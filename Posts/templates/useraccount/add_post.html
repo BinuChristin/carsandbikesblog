@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %} Add Post {% endblock %}
+{% block style %}
+  <style>
+      .h1-heading {
+      color: red;
+      }
+  </style>
+{% endblock %}
+{% block body %}
+<div>
+    <div>
+        <h3>Add Post</h3>
+        <form action="" method="post"
+              enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            <!--object as_p -->
+            {{ add_post_form.as_p }}
+            <input type="submit" value="add Post"
+            class="btn btn-primary">
+        </form>
+
+    </div>
+</div>
+{% endblock %}

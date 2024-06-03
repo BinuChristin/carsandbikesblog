@@ -1,0 +1,43 @@
+
+{% extends 'base.html' %}
+
+{% block title %} POSTS LISTS {% endblock %}
+{% block style %}{% endblock %}
+
+
+{% block body %}
+<div class="container mt-3">
+    <h3>Details of {{ post_details.post_title }} </h3><br/>
+    <img width="200" class="img-thumbnail"
+         src="{{ post_details.post_image.url }}">
+    <h5>{{ post_details.post_description }}</h5>
+    <h6 class="text-primary">
+        Posted By {{ post_details.post_author }} on
+        {{ post_details.post_published_datetime }}</h6>
+    <a href="{% url 'post_list' %}">
+        <button type="button" class="btn btn-success">
+            Back</button></a>
+   {% if request.user == post_details.post_author %}
+    <a href="{% url 'edit_post' post_details.id %}">
+        <button type="button" class="btn btn-success">
+           Update</button></a></a>
+    <a href="{% url 'delete_post' post_details.id %}">
+        <button type="button" class="btn btn-danger">
+           Delete</button></a></a>
+    {% endif %}
+
+    <br><br>
+    <h4>Post Comments</h4>
+    <ul>
+        {% for comment in comments %}
+        <li>
+            <h5>{{comment.comment_text}}</h5>
+            <br>
+            <small>Posted on {{comment.comment_published_datetime}}</small>
+        </li>
+        {% empty %}
+        <li>No comments</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

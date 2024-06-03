@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %} SIGN UP {% endblock %}
+{% block style %}
+
+{% endblock %}
+{% block body %}
+<div>
+    <div>
+        <h3>Please Register</h3>
+        <form action="" method="post" novalidate>
+            {% csrf_token %}
+            {{ user_reg_form.as_p }}
+           <input type="submit" value="Register"
+                  class="btn btn-primary">
+        </form>
+    </div>
+</div>
+
+{% endblock %}
